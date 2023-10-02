@@ -23,10 +23,9 @@ const verifyToken = async token => {
     return jwt.verify(token, publicKey)
 }
 
-router.get('/hc', async (req,res) => {
+router.get('/', async (req,res) => {
     const token = req.headers.authorization
     const tokenResult = await verifyToken(token)
-    console.log(tokenResult)
     const userId = tokenResult.userId
     
     const userURL = `https://${ZENDESK_SUBDOMAIN}.zendesk.com/api/v2/users/${userId}`
